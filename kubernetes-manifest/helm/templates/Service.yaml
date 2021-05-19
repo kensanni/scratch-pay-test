@@ -1,0 +1,15 @@
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: scratch-pay
+  namespace: "{{ .Values.namespace }}"
+  labels:
+    app: scratch-pay
+spec:
+  ports:
+  - port: 80
+    targetPort: 8000
+  selector:
+    app: scratch-pay
+  type: LoadBalancer

@@ -1,0 +1,25 @@
+version: '3.3'
+
+services:
+  scratchpay:
+    build: 
+      context: .
+    volumes:
+      - ./:/app
+    env_file: .env
+    depends_on: 
+      - db
+    ports:
+      - 7000:8000
+
+  db:
+    image: postgres
+    restart: always
+    env_file: .env
+    ports:
+      - 9000:5432
+    volumes:
+      - scratchpay-data:/var/lib/postgresql/data  
+
+volumes:
+  scratchpay-data:

@@ -1,0 +1,43 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: scratch-pay
+  namespace: "{{ .Values.namespace }}"
+spec:
+  selector:
+    matchLabels:
+      app: scratch-pay
+  replicas: {{ .Values.replicas }}
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxSurge: 1
+      maxUnavailable: 0
+  template:
+    metadata:
+      labels:
+        app: scratch-pay
+    spec:
+      containers:
+      - name: scratch-pay
+        image: "sannikay/scratchpay:v1"
+        ports:
+        - containerPort: {{ .Values.Port }}
+        env:
+        - name: DATABASE_URL
+          value: "{{ .Values.database_url }}"
+        - name: JWT_SECRET
+          value: "{{ .Values.jwt_secret }}"
+        - name: NODE_ENV
+          value: "{{ .Values.node_env }}"
+        - name: PORT
+          value: {{ .Values.port }}
+        - name: JWT_EXP
+          value: "{{ .Values.jwt_exp }}"
+        command: ["/home/node/app/entrypoint.sh"]
+        readinessProbe:
+          httpGet:
+            path: /v1
+            port: {{ .Values.port }}
+          initialDelaySeconds: 15
+          periodSeconds: 5

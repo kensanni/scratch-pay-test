@@ -1,0 +1,6 @@
+namespace: default
+database_url: postgres://postgres:secret@db:5432/scratchpay
+jwt_secret: learneverything
+node_env: development
+port: 8000
+jwt_exp: '3h'

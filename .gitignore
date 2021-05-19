@@ -1,0 +1,7 @@
+scratchpay-api/node_modules
+scratchpay-api/.env
+scratchpay-api/package-lock.json
+
+terraform-gke/terraform.tfvars
+terraform-gke/terraform*
+terraform-gke/.terraform*

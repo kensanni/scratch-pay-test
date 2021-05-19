@@ -1,0 +1,21 @@
+module "gke" {
+  source                                = "./app-cluster/gke"
+  region                                = var.region
+  project                               = var.project
+  credentials                           = var.credentials
+  project_prefix                        = var.project_prefix
+  service_account_iam_roles             = var.service_account_iam_roles
+  service_account_custom_iam_roles      = var.service_account_custom_iam_roles
+  project_services                      = var.project_services
+  kubernetes_instance_type              = var.kubernetes_instance_type
+  kubernetes_nodes_per_zone             = var.kubernetes_nodes_per_zone
+  kubernetes_logging_service            = var.kubernetes_logging_service
+  kubernetes_masters_ipv4_cidr          = var.kubernetes_masters_ipv4_cidr
+  kubernetes_monitoring_service         = var.kubernetes_monitoring_service
+  kubernetes_daily_maintenance_window   = var.kubernetes_daily_maintenance_window
+  kubernetes_master_authorized_networks = var.kubernetes_master_authorized_networks
+  kubernetes_network_ipv4_cidr          = var.kubernetes_network_ipv4_cidr
+  kubernetes_services_ipv4_cidr         = var.kubernetes_services_ipv4_cidr
+  kubernetes_pods_ipv4_cidr             = var.kubernetes_pods_ipv4_cidr
+  internal_source_ranges                = var.internal_source_ranges
+}
